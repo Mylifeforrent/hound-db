@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>hound-db</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="prototype.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-copy="common.skipToContent"></a>
+
+    <div class="proto-bar" role="region" aria-label="Prototype controls">
+      <span class="proto-badge">Prototype</span>
+      <div class="proto-tabs" role="group" aria-label="Surfaces">
+        <button class="proto-tab" type="button" data-surface-tab="chat" aria-pressed="true">Chat</button>
+        <button class="proto-tab" type="button" data-surface-tab="graph" aria-pressed="false">Schema graph</button>
+        <button class="proto-tab" type="button" data-surface-tab="admin" aria-pressed="false">Semantic admin</button>
+        <button class="proto-tab" type="button" data-surface-tab="eval" aria-pressed="false">Evaluation</button>
+      </div>
+      <span class="proto-spacer"></span>
+      <label class="proto-field">
+        <span>State</span>
+        <select class="proto-select" id="state-select"></select>
+      </label>
+      <span class="proto-note">Mock data · static prototype</span>
+      <button class="proto-btn" type="button" id="hide-proto">Hide bar</button>
+    </div>
+
+    <button class="proto-fab" type="button" id="show-proto">Show prototype controls</button>
+
+    <div class="app">
+      <header class="top-nav">
+        <a class="brand" href="#chat" data-copy="common.brand">hound-db</a>
+        <span class="connection-pill" data-copy="common.connectionPill"></span>
+        <span class="top-nav-spacer"></span>
+        <span class="health">
+          <span class="health-dot" aria-hidden="true"></span>
+          <span data-copy="common.healthy"></span>
+        </span>
+        <button
+          class="btn btn--icon history-toggle"
+          type="button"
+          id="history-toggle"
+          aria-expanded="false"
+          aria-controls="history-rail"
+          data-copy-label="common.history"
+        >
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8"></circle>
+            <path d="M12 8v4l3 2"></path>
+          </svg>
+        </button>
+      </header>
+
+      <div class="shell-body">
+        <nav class="history-rail" id="history-rail" data-copy-label="history.navLabel">
+          <div class="history-rail__head">
+            <span class="t-label" data-copy="history.navLabel"></span>
+            <button class="btn btn--icon" type="button" id="history-close" data-copy-label="common.close">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="history-rail__inner">
+            <div class="history-rail__filter">
+              <label class="t-caption" for="history-filter" data-copy="history.filterLabel"></label>
+              <input
+                class="input"
+                id="history-filter"
+                type="search"
+                data-copy-placeholder="history.filterPlaceholder"
+              />
+            </div>
+            <ul class="history-list" id="history-list"></ul>
+          </div>
+        </nav>
+
+        <button class="rail-scrim" type="button" id="rail-scrim" aria-label="Close history"></button>
+
+        <main id="main" class="main-region main-region--fill">
+          <section id="surface-chat" class="surface is-active" data-surface="chat" aria-labelledby="chat-title">
+            <h1 class="sr-only" id="chat-title" data-copy="chat.surfaceTitle"></h1>
+            <div class="chat-inner">
+              <div class="chat-layout">
+                <div class="chat-column">
+                  <div class="conversation" id="chat-conversation"></div>
+                  <form class="composer" id="composer" data-copy-label="chat.composerLabel">
+                    <div class="composer__note">
+                      <span class="connection-pill" data-copy="common.connectionPill"></span>
+                      <span data-copy="chat.composerNote"></span>
+                    </div>
+                    <label class="sr-only" for="question-input" data-copy="chat.composerLabel"></label>
+                    <div class="composer__row">
+                      <textarea
+                        class="textarea composer__input"
+                        id="question-input"
+                        rows="1"
+                        data-copy-placeholder="chat.composerPlaceholder"
+                      ></textarea>
+                      <button class="btn btn--primary" type="submit" id="ask-button" disabled data-copy="chat.ask"></button>
+                    </div>
+                    <p class="composer__status" id="composer-status" hidden></p>
+                  </form>
+                </div>
+                <aside class="trace-rail" id="chat-trace" aria-label="Run trace"></aside>
+              </div>
+            </div>
+          </section>
+
+          <section id="surface-graph" class="surface" data-surface="graph" aria-labelledby="graph-title">
+            <h1 class="sr-only" id="graph-title" data-copy="graph.surfaceTitle"></h1>
+            <div class="graph-inner">
+              <div class="graph-layout">
+                <div class="filter-rail" id="graph-filters"></div>
+                <div class="graph-panel">
+                  <div class="surface-header-mobile">
+                    <button class="btn btn--secondary btn--sm" type="button" id="graph-filter-toggle" data-copy="graph.filtersButton"></button>
+                  </div>
+                  <div class="graph-toolbar" id="graph-toolbar"></div>
+                  <div id="graph-view"></div>
+                </div>
+                <aside class="detail-panel" id="graph-detail"></aside>
+              </div>
+            </div>
+          </section>
+
+          <section id="surface-admin" class="surface admin-surface" data-surface="admin" aria-labelledby="admin-title">
+            <h1 class="sr-only" id="admin-title" data-copy="admin.surfaceTitle"></h1>
+            <div class="admin-inner">
+              <div class="admin-layout">
+                <div class="asset-rail" id="admin-rail"></div>
+                <div class="editor" id="admin-editor"></div>
+              </div>
+            </div>
+          </section>
+
+          <section id="surface-eval" class="surface" data-surface="eval" aria-labelledby="eval-title">
+            <h1 class="sr-only" id="eval-title" data-copy="eval.surfaceTitle"></h1>
+            <div class="eval-inner" id="eval-content"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="live-region" class="sr-only" aria-live="polite"></div>
+    <div id="alert-region" class="sr-only" aria-live="assertive"></div>
+    <div id="overlay-root"></div>
+
+    <script src="copy.zh.js"></script>
+    <script src="prototype.js"></script>
+  </body>
+</html>
