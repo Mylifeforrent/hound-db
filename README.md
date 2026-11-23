@@ -23,12 +23,14 @@ Not a commercial product. No authentication, multi-tenancy, write access, cross-
 
 | Document | Contents |
 |---|---|
+| [AGENTS.md](AGENTS.md) | Repository rules for humans and AI agents: English-only artifacts, scope freeze, deterministic boundaries, verification gates |
 | [Requirements](docs/00_requirement/requirements.md) | Product definition, users, scope, functional and non-functional requirements, success metrics, risks |
 | [Business case](docs/01_business-model/business-case.md) | Internal value case: time-saving hypothesis, costs, options, success and kill criteria. Not a commercial business model |
 | [Architecture](docs/01_architecture/architecture.md) | Plan A topology, agent/tool boundary, node contracts, data model, safety gate, API, latency and cost budgets |
 | [Evaluation protocol](docs/02_eval/evaluation-protocol.md) | Case split, gold standard, correctness rules, metrics, adversarial suite, regression policy |
 | [Milestones and demo](docs/03_delivery/milestones.md) | M0–M4, exit criteria, 5-minute demo script, required inputs |
 | [Decision log](docs/04_decisions/decision-log.md) | Final decisions, rejected alternatives, rationale, open items |
+| [UI design](docs/05_ui_design/design.md) | Airtable token snapshot, color and type rules, component specs, and the four app surfaces |
 
 `docs/01_business-model/` contains an **internal business case (value case)**, not a commercial business model. The project remains non-commercial (decision D-01); the document answers "is this worth the author's spare time?", not "how do we make money?".
 
@@ -47,8 +49,9 @@ Nothing runs yet. M0 freezes the evaluation set; M1 delivers the first end-to-en
 ## Repository status
 
 ```
-docs/                 Requirements, architecture, evaluation, delivery, decisions
+docs/                 Requirements, architecture, evaluation, delivery, decisions, UI design
 docs/00_setup/        Reserved for project setup and rules (empty)
+docs/05_ui_design/    Airtable-derived tokens, component specs, and surface designs
 eval/                 Frozen evaluation cases and runner (M0/M3)
 schema/               Schema-only dumps and snapshots (M0/M1)
 semantic/             Version-controlled seed/export of semantic assets (M2)
